@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container" bindtap="play">
+  <image model="center" src="/images/消防车.png"/>
+</view>

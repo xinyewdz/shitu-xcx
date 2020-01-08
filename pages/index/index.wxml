@@ -1,4 +1,5 @@
 <!--index.wxml-->
 <view class="container" bindtap="play">
-  <image model="center" src="/images/消防车.png"/>
+  <image id="image" model="center" src="{{imgPath}}"></image>
 </view>
+<button bindtap="getNext">下一个</button>

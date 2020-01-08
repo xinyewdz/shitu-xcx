@@ -1,13 +1,41 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var audioContext;
 
 Page({
+  data: {
+    imgPath: null,
+    audioPath:null
+  },
+  onLoad: function(){
+    this.getNext();
+  },
   play: function(){
-    var audioContext = wx.createInnerAudioContext();
-    audioContext.src="/sounds/消防车声音.mp3";
+    if(audioContext!=undefined){
+      audioContext.stop();
+    }
+    audioContext = wx.createInnerAudioContext();
+    audioContext.src = this.data.audioPath;
     audioContext.play()
-    console.log("play audio")
+  },
+  next: function(data){
+    this.setData({
+      "imgPath": data.ImgPath,
+      "audioPath": data.AudioPath
+      });
+
+  },
+  getNext:function(){
+    var that = this;
+    wx.request({
+      url: 'https://mp.wenqiuqiu.com/next',
+      success(res) {
+
+        that.next(res.data);
+      }
+    })
   }
  
 })
+
